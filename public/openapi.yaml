@@ -1,0 +1,21 @@
+openapi: 3.0.0
+info:
+  title: 示例API
+  description: 这是一个简单的示例API文档
+  version: 1.0.0
+servers:
+  - url: /api
+paths:
+  /hello:
+    get:
+      summary: 获取欢迎信息
+      responses:
+        '200':
+          description: 成功获取欢迎信息
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
