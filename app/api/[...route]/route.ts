@@ -14,10 +14,18 @@ app.get('/hello', c => {
   });
 });
 
-app.post('/maimai', context => {
-  return context.json({
-    message: 'Hello Maimai',
+app.get('/maimai/best', async context => {
+  const MAIMAI = process.env.MAIMAI as string;
+
+  const res = await fetch('https://maimai.lxns.net/api/v0/user/maimai/player/bests', {
+    headers: {
+      'X-User-Token': MAIMAI,
+    },
   });
+
+  const data = await res.json();
+
+  return context.json(data);
 });
 
 export const GET = handle(app);
