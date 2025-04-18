@@ -1,45 +1,26 @@
 import { Hono } from 'hono';
 import { handle } from 'hono/vercel';
-import { swaggerUI } from '@hono/swagger-ui';
+import maimaiRoute from './maimai';
+import baseRoute from './base';
 
 export const runtime = 'edge';
 
 const app = new Hono().basePath('/api');
 
-app.get('/ui', swaggerUI({ url: '/openapi.yaml' }));
+app.route('/maimai', maimaiRoute);
 
-app.get('/hello', c => {
-  return c.json({
-    message: 'Hello from Hono!',
-  });
-});
+app.route('/', baseRoute);
 
-app.get('/maimai/best', async context => {
-  const MAIMAI = process.env.MAIMAI as string;
+// 全局错误处理
+app.onError((err, context) => {
+	context.status(500);
+	// console.error()
 
-  const res = await fetch('https://maimai.lxns.net/api/v0/user/maimai/player/bests', {
-    headers: {
-      'X-User-Token': MAIMAI,
-    },
-  });
-
-  const data = await res.json();
-
-  return context.json(data);
-});
-
-app.get('/maimai/player', async context => {
-  const MAIMAI = process.env.MAIMAI as string;
-
-  const res = await fetch('https://maimai.lxns.net/api/v0/user/maimai/player', {
-    headers: {
-      'X-User-Token': MAIMAI,
-    },
-  });
-
-  const data = await res.json();
-
-  return context.json(data);
+	return context.json({
+		code: 500,
+		data: null,
+		message: err.message,
+	});
 });
 
 export const GET = handle(app);
