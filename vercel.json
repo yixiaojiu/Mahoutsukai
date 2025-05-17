@@ -11,5 +11,11 @@
         }
       ]
     }
+  ],
+  "crons": [
+    {
+      "path": "/maimai/song/update",
+      "schedule": "0 13 * * *"
+    }
   ]
 }

@@ -1,0 +1,3 @@
+- 只要 Redis 有数据就返回，注册任务去更新数据
+- 添加 refresh 参数，获取最新的数据。
+- 在浏览器的 Storage 和 Serverless 的环境变量中保存 token，只有获得认证的用户才能 refresh 数据。
