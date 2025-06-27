@@ -103,8 +103,9 @@ maimai.get('/data', async (context) => {
 /**
  * 更新曲库
  * 注册了定时任务，每天的13点执行
+ * vercel cron 不支持 post 请求
  */
-maimai.post('/song/update', async (context) => {
+maimai.get('/song/update', async (context) => {
 	const cacheHash = await redis.get<string>(songHashKey)
 	const resConfig = await (
 		await fetch('https://maimai.lxns.net/api/v0/site/config')
