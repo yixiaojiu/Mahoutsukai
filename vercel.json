@@ -14,7 +14,8 @@
   ],
   "crons": [
     {
-      "path": "/maimai/song/update",
+      "path": "/api/edge/maimai/song/update",
+      "method": "POST",
       "schedule": "0 13 * * *"
     }
   ]

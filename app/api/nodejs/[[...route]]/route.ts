@@ -1,15 +1,12 @@
 import { Hono } from 'hono'
 import { handle } from 'hono/vercel'
-import maimaiRoute from './maimai'
-import baseRoute from './base'
+import ogRoute from './og'
 
-export const runtime = 'edge'
+export const runtime = 'nodejs'
 
-const app = new Hono().basePath('/api')
+const app = new Hono().basePath('/api/nodejs')
 
-app.route('/maimai', maimaiRoute)
-
-app.route('/', baseRoute)
+app.route('/og', ogRoute)
 
 // 全局错误处理
 app.onError((err, context) => {
