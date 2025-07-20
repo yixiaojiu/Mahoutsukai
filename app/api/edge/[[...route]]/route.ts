@@ -1,6 +1,7 @@
 import { Hono } from 'hono'
 import { handle } from 'hono/vercel'
 import maimaiRoute from './maimai'
+import bangdreamRoute from './bangdream'
 import baseRoute from './base'
 
 export const runtime = 'edge'
@@ -8,6 +9,7 @@ export const runtime = 'edge'
 const app = new Hono().basePath('/api/edge')
 
 app.route('/maimai', maimaiRoute)
+app.route('/bangdream', bangdreamRoute)
 
 app.route('/', baseRoute)
 
