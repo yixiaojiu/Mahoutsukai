@@ -41,7 +41,7 @@ bangdream.get('/data', async (context) => {
 	const bandRankList = Object.entries(
 		apiData.data.profile.bandRankMap.entries,
 	).map(([id, rank]) => ({
-		id: `https://bestdori.com/assets/jp/band/logo/${id.padStart(3, '0')}_rip/logoL.png`,
+		img: `https://bestdori.com/assets/jp/band/logo/${id.padStart(3, '0')}_rip/logoL.png`,
 		rank,
 	}))
 
@@ -70,7 +70,7 @@ bangdream.get('/data', async (context) => {
 	const userCharacterRank = Object.entries(
 		apiData.data.profile.userCharacterRankMap.entries,
 	).map(([id, info]) => ({
-		id: `https://bestdori.com/res/icon/chara_icon_${id}.png`,
+		img: `https://bestdori.com/res/icon/chara_icon_${id}.png`,
 		rank: (info as any).rank,
 	}))
 
